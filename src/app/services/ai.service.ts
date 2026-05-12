@@ -62,7 +62,8 @@ export class AiService {
       { speaker: personaliy2, text: this.getRamdomResponse(personaliy2.id) },
       { speaker: personaliy1, text: this.getRamdomResponse((personaliy1.id) )},
       { speaker: personaliy2, text: this.getRamdomResponse((personaliy2.id) )}
-     ]
+     ];
+     return of(debate).pipe(delay(1500));
   }
   private getRamdomResponse(id:string){
     const templates = this.responseTemplates[id] || [];
