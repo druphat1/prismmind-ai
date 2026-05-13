@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { HistoryEntry } from '../models/ai-response.model';
+import { AIResponse, HistoryEntry } from '../models/ai-response.model';
 import { timestamp } from 'rxjs';
 
 @Injectable({
@@ -29,5 +29,27 @@ export class HistoryService {
     catch {
       this.entries.set([]);
     }
+  }
+  clearHistory(){
+    this.entries.set([]);
+    localStorage.removeItem(this.STORAGE_KEY);
+  }
+  addEntry(question :string ,responses: AIResponse[]) : void{
+    const entry : HistoryEntry = {
+        id : crypto.randomUUID(),
+        question,
+        responses : responses.map(r=>({
+          ...r,
+          isTyping : false,
+          displayedText : r.response
+        })),
+      timestamp: new Date()
+    };
+    const current = this.entries();
+    this.entries.set([entry,...current]);
+    this.saveHistory();
+  }
+  private saveHistory() : void{
+    localStorage.setItem(this.STORAGE_KEY,JSON.stringify(this.entries()));
   }
 }
