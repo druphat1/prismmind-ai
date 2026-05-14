@@ -1,0 +1,48 @@
+<div class="min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6"
+               style="background: #8b5cf61a; border: 1px solid #8b5cf640;">
+            <span class="text-sm font-medium" style="color: #c084fc;">🧬 Meet the Minds</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-display font-bold mb-4">
+            <span class="gradient-text">Explore the Minds</span>
+          </h1>
+          <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255,255,255,0.4);">
+            Each personality brings a unique lens to every question. Discover their strengths,
+            perspectives, and what makes each mind tick.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          @for (personality of personalities; track personality.id; let i = $index) {
+            <div class="mind-card group animate-fade-in-up"
+                 [style.animation-delay]="(i * 0.1) + 's'"
+                 [style.--glow-color]="personality.glowColor"
+                 [style.--border-color]="personality.borderColor">
+              <div class="absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl opacity-80" [style.background]="personality.gradient"></div>
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                   [style.background]="personality.gradient" style="border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                {{ personality.icon }}
+              </div>
+              <h2 class="text-xl font-bold text-white mb-1">{{ personality.name }}</h2>
+              <p class="text-sm font-medium mb-4" [style.color]="personality.glowColor">
+                {{ personality.tagline }}
+              </p>
+              <p class="text-sm leading-relaxed mb-6" style="color: #ffffff73;">
+                {{ personality.description }}
+              </p>
+              <div class="rounded-xl p-4"  style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+                <p class="text-xs uppercase tracking-wider mb-2 font-medium"
+                   style="color: rgba(255,255,255,0.25);">Sample Response Style</p>
+                <p class="text-sm italic leading-relaxed" style="color: rgba(255,255,255,0.5);">
+                  "{{ getSampleQuote(personality) }}"
+                </p>
+              </div>
+              <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100  transition-opacity duration-500 pointer-events-none"
+                   [style.box-shadow]="'inset 0 0 80px ' + personality.glowColor">
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
