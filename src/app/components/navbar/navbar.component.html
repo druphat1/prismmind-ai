@@ -1,0 +1,79 @@
+<nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a routerLink="/" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 rounded-lg flex items-center justify-center text-lg"
+                 style="background: linear-gradient(135deg, #7c3aed, #3b82f6);
+                        box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);">
+              ◈
+            </div>
+            <span class="font-display text-lg font-bold gradient-text tracking-wider">
+              PrismMind AI
+            </span>
+          </a>
+
+          <div class="hidden md:flex items-center gap-1">
+            <a routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"
+               class="nav-link">Home</a>
+            <a routerLink="/explore-minds" routerLinkActive="nav-active"
+               class="nav-link">Explore Minds</a>
+            <a routerLink="/mind-clash" routerLinkActive="nav-active"
+               class="nav-link">Mind Clash</a>
+            <a routerLink="/history" routerLinkActive="nav-active"
+               class="nav-link">History</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <button (click)="themeService.toggleTheme()"
+                    class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-200"
+                    style="background: rgba(255,255,255,0.05);"
+                    [attr.aria-label]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'">
+              @if (themeService.isDark()) {
+                <span class="text-lg">🌙</span>
+              } @else {
+                <span class="text-lg">☀️</span>
+              }
+            </button>
+            <button (click)="mobileMenuOpen.set(!mobileMenuOpen())"
+                    class="md:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-200"
+                    style="background: rgba(255,255,255,0.05);"
+                    aria-label="Toggle mobile menu">
+              <div class="flex flex-col gap-1.5 w-5">
+                <span class="block h-0.5 transition-all duration-300"
+                      style="background: rgba(255,255,255,0.8);"
+                      [class.rotate-45]="mobileMenuOpen()"
+                      [class.translate-y-2]="mobileMenuOpen()"></span>
+                <span class="block h-0.5 transition-all duration-300"
+                      style="background: rgba(255,255,255,0.8);"
+                      [class.opacity-0]="mobileMenuOpen()"></span>
+                <span class="block h-0.5 transition-all duration-300"
+                      style="background: rgba(255,255,255,0.8);"
+                      [class.-rotate-45]="mobileMenuOpen()"
+                      [class.-translate-y-2]="mobileMenuOpen()"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      @if (mobileMenuOpen()) {
+        <div class="md:hidden animate-fade-in"
+             style="border-top: 1px solid rgba(255,255,255,0.05);">
+          <div class="px-4 py-3 space-y-1">
+            <a routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}"
+               (click)="mobileMenuOpen.set(false)"
+               class="mobile-nav-link">Home</a>
+            <a routerLink="/explore-minds" routerLinkActive="nav-active"
+               (click)="mobileMenuOpen.set(false)"
+               class="mobile-nav-link">Explore Minds</a>
+            <a routerLink="/mind-clash" routerLinkActive="nav-active"
+               (click)="mobileMenuOpen.set(false)"
+               class="mobile-nav-link">Mind Clash</a>
+            <a routerLink="/history" routerLinkActive="nav-active"
+               (click)="mobileMenuOpen.set(false)"
+               class="mobile-nav-link">History</a>
+          </div>
+        </div>
+      }
+    </nav>

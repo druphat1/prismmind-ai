@@ -1,0 +1,53 @@
+<div class = "min-h-screen">
+      <app-hero-section />
+
+      <!-- Question Input -->
+      <!-- <app-question-box
+        (questionSubmitted)="onQuestionSubmitted($event)" /> -->
+
+      <!-- Trending Questions -->
+      @if (!isLoading() && responses().length === 0) {
+        <!-- <app-trending-questions
+          (questionClicked)="onQuestionSubmitted($event)" /> -->
+      }
+      @if (isLoading()) {
+        <app-loading-spinner />
+      }
+
+      @if (!isLoading() && responses().length > 0) {
+        <section class="px-4 sm:px-6 lg:px-8 pb-16">
+          <div class="max-w-7xl mx-auto">
+            <!-- Results header -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-2">
+                <span class="text-primary-400 text-sm">✦</span>
+                <h2 class="text-sm font-semibold text-white/40 uppercase tracking-wider">
+                  Perspectives on
+                </h2>
+              </div>
+              <button (click)="clearResponses()"
+                      class="text-xs text-white/30 hover:text-white/50 transition-colors px-3 py-1.5
+                             rounded-lg hover:bg-white/5">
+                Clear results
+              </button>
+            </div>
+
+            <!-- Question display -->
+            <div class="glass-card p-4 mb-8 animate-fade-in-up">
+              <p class="text-white/80 text-base italic">"{{ currentQuestion() }}"</p>
+            </div>
+
+            <!-- Response grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              @for (response of responses(); track response.personality.id; let i = $index) {
+                <div class="animate-fade-in-up" [style.animation-delay]="(i * 0.12) + 's'">
+                  <!-- <app-ai-response-card
+                    [response]="response"
+                    [animationDelay]="i * 200" /> -->
+                </div>
+              }
+            </div>
+          </div>
+        </section>
+      }
+    </div>

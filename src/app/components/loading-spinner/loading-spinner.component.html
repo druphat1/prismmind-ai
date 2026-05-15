@@ -1,0 +1,43 @@
+<div class="px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <!-- Loading header -->
+        <div class="text-center mb-8 animate-fade-in">
+          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full
+                      glass border border-primary-500/20">
+            <div class="relative w-5 h-5">
+              <div class="absolute inset-0 rounded-full border-2 border-primary-500/30"></div>
+              <div class="absolute inset-0 rounded-full border-2 border-transparent border-t-primary-400
+                          animate-spin"></div>
+            </div>
+            <span class="text-sm text-primary-300 font-medium">PrismMind is thinking...</span>
+          </div>
+        </div>
+
+        <!-- Skeleton grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          @for (i of [1,2,3,4,5,6]; track i) {
+            <div class="glass-card p-5 sm:p-6 animate-fade-in-up"
+                 [style.animation-delay]="(i * 0.1) + 's'">
+              <!-- Top bar skeleton -->
+              <div class="h-1 skeleton w-full rounded-full mb-4"></div>
+              <!-- Header skeleton -->
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-xl skeleton"></div>
+                <div class="flex-1">
+                  <div class="h-4 skeleton w-24 mb-2"></div>
+                  <div class="h-3 skeleton w-32"></div>
+                </div>
+              </div>
+              <!-- Content skeleton -->
+              <div class="space-y-2.5">
+                <div class="h-3 skeleton w-full"></div>
+                <div class="h-3 skeleton w-11/12"></div>
+                <div class="h-3 skeleton w-4/5"></div>
+                <div class="h-3 skeleton w-9/12"></div>
+                <div class="h-3 skeleton w-3/4"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>

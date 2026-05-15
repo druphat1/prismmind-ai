@@ -1,0 +1,55 @@
+<footer class="relative mt-20 border-t border-white/5">
+      <!-- Gradient border glow -->
+      <div class="absolute top-0 left-0 right-0 h-px"
+           style="background: linear-gradient(90deg, transparent, rgba(139,92,246,0.3), rgba(59,130,246,0.3), transparent);">
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Brand -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm"
+                   style="background: linear-gradient(135deg, #7c3aed, #3b82f6);">
+                ◈
+              </div>
+              <span class="font-display text-base font-bold gradient-text">PrismMind AI</span>
+            </div>
+            <p class="text-white/30 text-sm leading-relaxed">
+              One question. Six minds. Infinite perspectives.
+              Explore how different AI personalities approach the same problem.
+            </p>
+          </div>
+
+          <!-- Navigation -->
+          <div>
+            <h3 class="text-white/50 font-semibold text-sm uppercase tracking-wider mb-3">Navigate</h3>
+            <div class="space-y-2">
+              <a routerLink="/" class="block text-white/30 hover:text-white/60 text-sm transition-colors">Home</a>
+              <a routerLink="/explore-minds" class="block text-white/30 hover:text-white/60 text-sm transition-colors">Explore Minds</a>
+              <a routerLink="/mind-clash" class="block text-white/30 hover:text-white/60 text-sm transition-colors">Mind Clash</a>
+              <a routerLink="/history" class="block text-white/30 hover:text-white/60 text-sm transition-colors">History</a>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div>
+            <h3 class="text-white/50 font-semibold text-sm uppercase tracking-wider mb-3">About</h3>
+            <p class="text-white/30 text-sm leading-relaxed">
+              Built with Angular 19, Tailwind CSS, and a lot of imagination.
+              This is a concept demo showcasing multi-perspective AI responses.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-white/20 text-xs">
+            © {{ currentYear }} PrismMind AI. All rights reserved.
+          </p>
+          <p class="text-white/20 text-xs">
+            Crafted with ✦ for infinite perspectives
+          </p>
+        </div>
+      </div>
+    </footer>

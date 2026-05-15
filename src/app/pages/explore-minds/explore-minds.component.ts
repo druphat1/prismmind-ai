@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { PERSONALITY } from '../../shared/constants/personalities';
 import { Personality } from '../../models/personality.model';
-
 @Component({
   selector: 'app-explore-minds',
   imports: [],
   templateUrl: './explore-minds.component.html',
-  styleUrl: './explore-minds.component.css'
+  styleUrl: './explore-minds.component.scss'
 })
 export class ExploreMindsComponent {
    personalities = PERSONALITY;
