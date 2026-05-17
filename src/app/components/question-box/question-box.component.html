@@ -1,0 +1,40 @@
+ <section class="px-4 sm:px-6 lg:px-8 pb-12">
+      <div class="max-w-3xl mx-auto">
+        <div class="glass-card p-3 animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <!-- Input -->
+            <div class="flex-1">
+              <textarea
+                [(ngModel)]="question"
+                (keydown.enter)="onSubmit($event)"
+                placeholder="Ask anything... What would 6 different minds think?"
+                rows="1"
+                class="input-glass"
+                style="min-height: 52px; max-height: 120px; resize: none;"
+                id="question-input"
+              ></textarea>
+            </div>
+            <button
+              (click)="submitQuestion()"
+              [disabled]="!question().trim()"
+              class="btn-gradient px-6 py-3.5 rounded-xl text-base font-semibold
+                     whitespace-nowrap flex items-center justify-center gap-2
+                     relative z-10"
+              [style.opacity]="question().trim() ? '1' : '0.3'"
+              [style.cursor]="question().trim() ? 'pointer' : 'not-allowed'"
+              id="ask-button">
+              <span class="relative z-10">Ask PrismMind</span>
+              <span class="relative z-10">✦</span>
+            </button>
+          </div>
+          @if (question().length > 0) {
+            <div class="text-right mt-2 pr-2">
+              <span class="text-xs"
+                    [style.color]="question().length > 500 ? '#f87171' : 'rgba(255,255,255,0.3)'">
+                {{ question().length }} / 500
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    </section>

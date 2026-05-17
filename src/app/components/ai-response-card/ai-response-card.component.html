@@ -1,0 +1,34 @@
+ <div class="response-card group cursor-default"
+         [style.--glow-color]="response().personality.glowColor"
+         [style.--border-color]="response().personality.borderColor"
+         [style.--gradient]="response().personality.gradient">
+      <!-- Gradient top bar -->
+      <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+           [style.background]="response().personality.gradient"></div>
+      <!-- Header -->
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-lg"
+             [style.background]="response().personality.gradient"
+             style="box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+          {{ response().personality.icon }}
+        </div>
+        <div>
+          <h3 class="text-white font-semibold text-base">{{ response().personality.name }}</h3>
+          <p class="text-xs" style="color: rgba(255,255,255,0.35);">{{ response().personality.tagline }}</p>
+        </div>
+      </div>
+
+      <!-- Response text with typing effect -->
+      <div class="text-sm leading-relaxed min-h-[60px]" style="color: rgba(255,255,255,0.7);">
+        <span>{{ displayedText() }}</span>
+        @if (isCurrentlyTyping()) {
+          <span class="typing-cursor"></span>
+        }
+      </div>
+
+      <!-- Hover glow overlay -->
+      <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+                  transition-opacity duration-500 pointer-events-none"
+           [style.box-shadow]="'inset 0 0 60px ' + response().personality.glowColor">
+      </div>
+    </div>
