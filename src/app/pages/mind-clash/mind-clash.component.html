@@ -1,0 +1,143 @@
+ <div class="min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12 animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6"
+               style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.25);">
+            <span class="text-sm font-medium" style="color: #c084fc;">⚔️ Mind Clash Arena</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-display font-bold mb-4">
+            <span class="gradient-text">Mind Clash</span>
+          </h1>
+          <p class="text-lg max-w-2xl mx-auto" style="color: rgba(255,255,255,0.4);">
+            Select two personalities and watch them debate any topic. Who makes the better argument?
+          </p>
+        </div>
+
+        <!-- Selector Row -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center mb-8
+                    animate-fade-in-up" style="animation-delay: 0.1s;">
+          <!-- Personality 1 -->
+          <div class="w-full sm:w-56">
+            <label class="block text-xs uppercase tracking-wider mb-2 font-medium"
+                   style="color: rgba(255,255,255,0.3);">Mind 1</label>
+            <select [(ngModel)]="selectedId1"
+                    class="input-glass w-full cursor-pointer">
+              @for (p of personalities; track p.id) {
+                <option [value]="p.id" [disabled]="p.id === selectedId2()">
+                  {{ p.icon }} {{ p.name }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- VS badge -->
+          <div class="w-14 h-14 rounded-full flex items-center justify-center font-display
+                      font-bold text-sm shrink-0"
+               style="border: 1px solid rgba(255,255,255,0.1);
+                      background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(239,68,68,0.2));
+                      box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);">
+            <span class="gradient-text-warm">VS</span>
+          </div>
+
+          <!-- Personality 2 -->
+          <div class="w-full sm:w-56">
+            <label class="block text-xs uppercase tracking-wider mb-2 font-medium"
+                   style="color: rgba(255,255,255,0.3);">Mind 2</label>
+            <select [(ngModel)]="selectedId2"
+                    class="input-glass w-full cursor-pointer">
+              @for (p of personalities; track p.id) {
+                <option [value]="p.id" [disabled]="p.id === selectedId1()">
+                  {{ p.icon }} {{ p.name }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <!-- Question input -->
+        <div class="max-w-2xl mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+          <div class="glass-card p-3">
+            <div class="flex gap-3">
+              <input
+                [(ngModel)]="clashQuestion"
+                placeholder="Enter a topic for debate..."
+                class="input-glass flex-1"
+                (keydown.enter)="startClash()"
+                id="clash-input" />
+              <button
+                (click)="startClash()"
+                [disabled]="!clashQuestion().trim() || isLoading()"
+                class="btn-gradient px-5 py-3 rounded-xl text-sm font-semibold
+                       whitespace-nowrap relative z-10"
+                [style.opacity]="(!clashQuestion().trim() || isLoading()) ? '0.3' : '1'"
+                [style.cursor]="(!clashQuestion().trim() || isLoading()) ? 'not-allowed' : 'pointer'"
+                id="clash-button">
+                <span class="relative z-10">⚔️ Start Clash</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading -->
+        @if (isLoading()) {
+          <div class="text-center py-16 animate-fade-in">
+            <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass"
+                 style="border: 1px solid rgba(139, 92, 246, 0.2);">
+              <div class="relative w-5 h-5">
+                <div class="absolute inset-0 rounded-full"
+                     style="border: 2px solid rgba(139, 92, 246, 0.3);"></div>
+                <div class="absolute inset-0 rounded-full animate-spin"
+                     style="border: 2px solid transparent; border-top-color: #a855f7;"></div>
+              </div>
+              <span class="text-sm font-medium" style="color: #c084fc;">Minds are preparing their arguments...</span>
+            </div>
+          </div>
+        }
+
+        <!-- Debate Display -->
+        @if (!isLoading() && debate().length > 0) {
+          <div class="max-w-4xl mx-auto space-y-5">
+            @for (entry of debate(); track $index; let i = $index) {
+              <div class="flex gap-4 animate-fade-in-up"
+                   [style.animation-delay]="(i * 0.15) + 's'"
+                   [class.flex-row-reverse]="i % 2 !== 0">
+                <!-- Avatar -->
+                <div class="shrink-0">
+                  <div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-lg"
+                       [style.background]="entry.speaker.gradient"
+                       style="border: 1px solid rgba(255,255,255,0.1);">
+                    {{ entry.speaker.icon }}
+                  </div>
+                </div>
+
+                <!-- Bubble -->
+                <div class="flex-1 glass-card p-5 max-w-[80%]"
+                     [style.border-color]="entry.speaker.borderColor">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-sm font-semibold text-white">{{ entry.speaker.name }}</span>
+                    <span class="text-xs px-2 py-0.5 rounded-full"
+                          style="background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3);">
+                      Round {{ getDebateRound(i) }}
+                    </span>
+                  </div>
+                  <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.65);">
+                    {{ entry.displayedText }}
+                  </p>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        <!-- Empty State -->
+        @if (!isLoading() && debate().length === 0) {
+          <div class="text-center py-16 animate-fade-in-up" style="animation-delay: 0.3s;">
+            <div class="text-5xl mb-4">⚔️</div>
+            <p class="text-sm" style="color: rgba(255,255,255,0.3);">
+              Select two minds and a topic to start a clash
+            </p>
+          </div>
+        }
+      </div>
+    </div>

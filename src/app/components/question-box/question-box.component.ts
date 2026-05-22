@@ -1,8 +1,9 @@
 import { Component, output, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-question-box',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './question-box.component.html',
   styleUrl: './question-box.component.scss'
 })

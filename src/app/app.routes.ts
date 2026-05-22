@@ -11,16 +11,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/explore-minds/explore-minds.component').then(m => m.ExploreMindsComponent),
     title: 'Explore Minds — PrismMind AI'
   },
-//   {
-//     path: 'mind-clash',
-//     loadComponent: () => import('./pages/mind-clash/mind-clash.component').then(m => m.MindClashComponent),
-//     title: 'Mind Clash — PrismMind AI'
-//   },
-//   {
-//     path: 'history',
-//     loadComponent: () => import('./pages/history/history.component').then(m => m.HistoryComponent),
-//     title: 'History — PrismMind AI'
-//   },
+  {
+    path: 'mind-clash',
+    loadComponent: () => import('./pages/mind-clash/mind-clash.component').then(m => m.MindClashComponent),
+    title: 'Mind Clash — PrismMind AI'
+  },
+  {
+    path: 'history',
+    loadComponent: () => import('./pages/history/history.component').then(m => m.HistoryComponent),
+    title: 'History — PrismMind AI'
+  },
   {
     path: '**',
     redirectTo: '',

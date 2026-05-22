@@ -2,13 +2,13 @@
       <app-hero-section />
 
       <!-- Question Input -->
-      <!-- <app-question-box
-        (questionSubmitted)="onQuestionSubmitted($event)" /> -->
+      <app-question-box
+        (questionSubmitted)="onQuestionSubmitted($event)" />
 
       <!-- Trending Questions -->
       @if (!isLoading() && responses().length === 0) {
-        <!-- <app-trending-questions
-          (questionClicked)="onQuestionSubmitted($event)" /> -->
+        <app-trending-questions
+          (questionClicked)="onQuestionSubmitted($event)" />
       }
       @if (isLoading()) {
         <app-loading-spinner />
@@ -41,9 +41,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               @for (response of responses(); track response.personality.id; let i = $index) {
                 <div class="animate-fade-in-up" [style.animation-delay]="(i * 0.12) + 's'">
-                  <!-- <app-ai-response-card
+                  <app-ai-response-card
                     [response]="response"
-                    [animationDelay]="i * 200" /> -->
+                    [animationDelay]="i * 200" />
                 </div>
               }
             </div>

@@ -1,0 +1,24 @@
+ <section class="px-4 sm:px-6 lg:px-8 pb-12">
+      <div class="max-w-4xl mx-auto">
+        <!-- Section title -->
+        <div class="flex items-center gap-2 mb-5">
+          <span style="color: #a855f7;" class="text-sm">✦</span>
+          <h2 class="text-sm font-semibold uppercase tracking-wider"
+              style="color: rgba(255,255,255,0.35);">
+            Trending Questions
+          </h2>
+        </div>
+
+        <!-- Question chips -->
+        <div class="flex flex-wrap gap-3">
+          @for (question of questions; track question; let i = $index) {
+            <button
+              (click)="questionClicked.emit(question)"
+              class="trending-chip animate-fade-in-up"
+              [style.animation-delay]="(i * 0.05) + 's'">
+              {{ question }}
+            </button>
+          }
+        </div>
+      </div>
+    </section>
