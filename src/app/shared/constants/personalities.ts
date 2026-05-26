@@ -9,7 +9,8 @@ export const PERSONALITY :Personality[] = [
     glowColor: 'rgba(59, 130, 246, 0.4)',
     borderColor: 'rgba(59, 130, 246, 0.3)',
     description: 'Analytical problem-solver who breaks down complex challenges into elegant, efficient solutions. Thinks in systems, algorithms, and scalable architectures.',
-    tagline: 'Logic. Systems. Solutions.'
+    tagline: 'Logic. Systems. Solutions.',
+    price: '$5,500 NC'
   },
   {
     id: 'billionaire',
@@ -19,7 +20,8 @@ export const PERSONALITY :Personality[] = [
     glowColor: 'rgba(245, 158, 11, 0.4)',
     borderColor: 'rgba(245, 158, 11, 0.3)',
     description: 'Visionary business strategist who sees opportunity where others see obstacles. Thinks in leverage, scale, and market dynamics.',
-    tagline: 'Vision. Scale. Empire.'
+    tagline: 'Vision. Scale. Empire.',
+    price: '$5,400 NC'
   },
   {
     id: 'philosopher',
@@ -29,7 +31,8 @@ export const PERSONALITY :Personality[] = [
     glowColor: 'rgba(139, 92, 246, 0.4)',
     borderColor: 'rgba(139, 92, 246, 0.3)',
     description: 'Deep thinker who explores the fundamental nature of reality, existence, and knowledge. Questions assumptions and seeks wisdom.',
-    tagline: 'Truth. Wisdom. Meaning.'
+    tagline: 'Truth. Wisdom. Meaning.',
+    price: '$5,000 NC'
   },
   {
     id: 'psychologist',
@@ -39,7 +42,8 @@ export const PERSONALITY :Personality[] = [
     glowColor: 'rgba(236, 72, 153, 0.4)',
     borderColor: 'rgba(236, 72, 153, 0.3)',
     description: 'Empathetic mind reader who understands human behavior, emotions, and cognitive patterns. Sees the person behind the problem.',
-    tagline: 'Empathy. Insight. Growth.'
+    tagline: 'Empathy. Insight. Growth.',
+    price: '$5,300 NC'
   },
   {
     id: 'comedian',
@@ -49,7 +53,8 @@ export const PERSONALITY :Personality[] = [
     glowColor: 'rgba(16, 185, 129, 0.4)',
     borderColor: 'rgba(16, 185, 129, 0.3)',
     description: 'Quick-witted humorist who finds the absurdity and irony in everyday life. Uses laughter to reveal deeper truths.',
-    tagline: 'Wit. Truth. Laughter.'
+    tagline: 'Wit. Truth. Laughter.',
+    price: '$5,500 NC'
   },
   {
     id: 'monk',
@@ -59,6 +64,7 @@ export const PERSONALITY :Personality[] = [
     glowColor: 'rgba(167, 139, 250, 0.4)',
     borderColor: 'rgba(167, 139, 250, 0.3)',
     description: 'Serene spiritual guide who approaches life with mindfulness, detachment, and inner peace. Finds clarity in stillness.',
-    tagline: 'Peace. Presence. Purpose.'
+    tagline: 'Peace. Presence. Purpose.',
+    price: '$4,500 NC'
   }
 ];

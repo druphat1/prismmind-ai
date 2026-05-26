@@ -1,0 +1,83 @@
+:host {
+  display: block;
+}
+
+.mind-clash-root {
+  min-height: 60vh;
+}
+
+.vs-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: white;
+}
+
+.debate-item {
+  align-items: flex-start;
+}
+
+.debate-item .w-12 {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+}
+
+.glass-card[data-role="bubble"] {
+  padding: 1.25rem !important;
+}
+
+.bubble-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.bubble-meta .round-pill {
+  font-size: 0.675rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.clash-input-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+#clash-input {
+  min-width: 0;
+}
+
+/* small adjustments for alternating message alignment */
+.flex-row-reverse .glass-card[data-role="bubble"] {
+  text-align: right;
+}
+
+/* typing cursor style applied to entries that are still streaming */
+.is-typing p {
+  display: inline;
+}
+.is-typing p.typing-cursor::after {
+  content: '▊';
+  color: var(--color-neon-purple);
+  animation: blink 1s infinite;
+  margin-left: 4px;
+}
+
+/* responsive tweaks */
+@media (max-width: 640px) {
+  .vs-badge {
+    width: 44px;
+    height: 44px;
+  }
+  .glass-card[data-role="bubble"] {
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+}

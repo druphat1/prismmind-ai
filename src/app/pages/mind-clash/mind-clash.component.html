@@ -32,13 +32,13 @@
           </div>
 
           <!-- VS badge -->
-          <div class="w-14 h-14 rounded-full flex items-center justify-center font-display
-                      font-bold text-sm shrink-0"
-               style="border: 1px solid rgba(255,255,255,0.1);
-                      background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(239,68,68,0.2));
-                      box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);">
-            <span class="gradient-text-warm">VS</span>
-          </div>
+             <div class="w-14 h-14 rounded-full flex items-center justify-center font-display
+               font-bold text-sm shrink-0 vs-badge"
+             style="border: 1px solid rgba(255,255,255,0.1);
+               background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(239,68,68,0.2));
+               box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);">
+               <span class="gradient-text-warm">VS</span>
+             </div>
 
           <!-- Personality 2 -->
           <div class="w-full sm:w-56">
@@ -75,6 +75,11 @@
                 id="clash-button">
                 <span class="relative z-10">⚔️ Start Clash</span>
               </button>
+              <button (click)="loadSampleClash()"
+                      class="px-4 py-3 rounded-xl text-sm font-semibold bg-white/6 text-white/90 hover:bg-white/10 transition-colors"
+                      style="border: 1px solid rgba(255,255,255,0.04);">
+                Preview
+              </button>
             </div>
           </div>
         </div>
@@ -99,7 +104,7 @@
         @if (!isLoading() && debate().length > 0) {
           <div class="max-w-4xl mx-auto space-y-5">
             @for (entry of debate(); track $index; let i = $index) {
-              <div class="flex gap-4 animate-fade-in-up"
+              <div class="flex gap-4 animate-fade-in-up debate-item"
                    [style.animation-delay]="(i * 0.15) + 's'"
                    [class.flex-row-reverse]="i % 2 !== 0">
                 <!-- Avatar -->
@@ -112,8 +117,9 @@
                 </div>
 
                 <!-- Bubble -->
-                <div class="flex-1 glass-card p-5 max-w-[80%]"
-                     [style.border-color]="entry.speaker.borderColor">
+                 <div class="flex-1 glass-card p-5 max-w-[80%]"
+                   data-role="bubble"
+                   [style.border-color]="entry.speaker.borderColor">
                   <div class="flex items-center gap-2 mb-2">
                     <span class="text-sm font-semibold text-white">{{ entry.speaker.name }}</span>
                     <span class="text-xs px-2 py-0.5 rounded-full"

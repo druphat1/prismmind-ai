@@ -1,53 +1,294 @@
-<div class = "min-h-screen">
-      <app-hero-section />
+<div class="neuro-shell">
 
-      <!-- Question Input -->
-      <app-question-box
-        (questionSubmitted)="onQuestionSubmitted($event)" />
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="1" width="3" height="3"/>
+          <rect x="6" y="1" width="3" height="3"/>
+          <rect x="1" y="6" width="3" height="3"/>
+          <rect x="6" y="6" width="3" height="3"/>
+        </svg>
+      </div>
+      NEURO_CORE
+    </div>
+    <nav class="topnav">
+      <span class="topnav-item">CORE_INIT</span>
+      <span class="topnav-item">NODES</span>
+      <span class="topnav-item">SYNAPSE</span>
+    </nav>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      SYSTEM: ONLINE
+    </div>
+  </header>
 
-      <!-- Trending Questions -->
-      @if (!isLoading() && responses().length === 0) {
-        <app-trending-questions
-          (questionClicked)="onQuestionSubmitted($event)" />
-      }
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section-label">NAVIGATION</div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 6L8 2l6 4v7a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/>
+        </svg>
+        Home
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="8" cy="7" r="4"/>
+          <path d="M5.5 13c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5"/>
+        </svg>
+        Minds
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4l8 8M12 4l-8 8"/>
+        </svg>
+        Clash
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 4h10M3 8h7M3 12h5"/>
+        </svg>
+        History
+      </div>
+    </nav>
+
+    <div class="node-health">
+      <div class="health-label">NODE HEALTH</div>
+      <div class="metric">
+        <div class="metric-row">
+          <span>CPU Affinity</span>
+          <span class="metric-val-cyan">98.4%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill bar-cyan" style="width: 98.4%"></div>
+        </div>
+      </div>
+      <div class="metric">
+        <div class="metric-row">
+          <span>Latency</span>
+          <span class="metric-val-pink">0.4ms</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill bar-pink" style="width: 12%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="premium-badge">
+      <div class="premium-title">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 1l1.5 3L11 4.5 8.5 7l.5 3.5L6 9l-3 1.5.5-3.5L1 4.5 4.5 4z"/>
+        </svg>
+        Premium Active
+      </div>
+      <div class="premium-desc">ACCESS GRANTED TO TIER 3 CLUSTERS</div>
+    </div>
+  </aside>
+
+  <!-- TERMINAL PANEL -->
+  <main class="terminal-panel">
+    <div class="term-chrome">
+      <div class="term-dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="term-title">ASCEND_TO_SYNTHETIC_INTEL.EXE</span>
+      <div class="term-chrome-actions">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="10" height="10" rx="1"/>
+        </svg>
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="7" cy="7" r="4"/><path d="M7 5v2l1.5 1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="term-body">
+      <div class="term-hero">
+        <app-hero-section />
+      </div>
+
       @if (isLoading()) {
-        <app-loading-spinner />
+        <div class="term-loading">
+          <app-loading-spinner />
+          <div class="log-line">
+            <span class="log-time">--:--:--</span>
+            <span class="log-msg">
+              <span class="tag tag-data">[PROC]</span>
+              Processing neural query<span class="blink-cursor"></span>
+            </span>
+          </div>
+        </div>
+      }
+
+      @if (!isLoading() && responses().length === 0) {
+        <div class="trending-section">
+          <app-trending-questions (questionClicked)="onQuestionSubmitted($event)" />
+        </div>
       }
 
       @if (!isLoading() && responses().length > 0) {
-        <section class="px-4 sm:px-6 lg:px-8 pb-16">
-          <div class="max-w-7xl mx-auto">
-            <!-- Results header -->
-            <div class="flex items-center justify-between mb-6">
-              <div class="flex items-center gap-2">
-                <span class="text-primary-400 text-sm">✦</span>
-                <h2 class="text-sm font-semibold text-white/40 uppercase tracking-wider">
-                  Perspectives on
-                </h2>
-              </div>
-              <button (click)="clearResponses()"
-                      class="text-xs text-white/30 hover:text-white/50 transition-colors px-3 py-1.5
-                             rounded-lg hover:bg-white/5">
-                Clear results
-              </button>
+        <div class="response-area">
+          <div class="results-header">
+            <div class="results-header-left">
+              <span class="results-star">✦</span>
+              <span class="results-label">PERSPECTIVES ON</span>
             </div>
-
-            <!-- Question display -->
-            <div class="glass-card p-4 mb-8 animate-fade-in-up">
-              <p class="text-white/80 text-base italic">"{{ currentQuestion() }}"</p>
-            </div>
-
-            <!-- Response grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              @for (response of responses(); track response.personality.id; let i = $index) {
-                <div class="animate-fade-in-up" [style.animation-delay]="(i * 0.12) + 's'">
-                  <app-ai-response-card
-                    [response]="response"
-                    [animationDelay]="i * 200" />
-                </div>
-              }
-            </div>
+            <button class="clear-btn" (click)="clearResponses()">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 2l10 10M12 2L2 12"/>
+              </svg>
+              Clear results
+            </button>
           </div>
-        </section>
+
+          <div class="question-display">
+            <span class="question-tag">[QUERY]</span>
+            <p class="question-text">"{{ currentQuestion() }}"</p>
+          </div>
+
+          <div class="response-grid">
+            @for (response of responses(); track response.personality.id; let i = $index) {
+              <div class="response-card-wrapper" [style.animation-delay]="(i * 0.12) + 's'">
+                <app-ai-response-card
+                  [response]="response"
+                  [animationDelay]="i * 200" />
+              </div>
+            }
+          </div>
+        </div>
       }
     </div>
+
+    <div class="term-input-bar">
+      <span class="term-prompt">⌘</span>
+      <app-question-box (questionSubmitted)="onQuestionSubmitted($event)" />
+    </div>
+  </main>
+
+  <!-- RIGHT PANEL -->
+  <aside class="right-panel">
+    <div class="panel-block">
+      <div class="panel-header">
+        <span class="panel-title">NEURAL VISUALIZER</span>
+        <div class="more-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="brain-container">
+        <div class="brain-glow"></div>
+        <svg class="brain-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="brainGrad" cx="50%" cy="45%" r="50%">
+              <stop offset="0%" stop-color="#4dd8c0" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#1a3a3a" stop-opacity=".8"/>
+            </radialGradient>
+            <filter id="nodeGlow">
+              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <ellipse cx="60" cy="55" rx="44" ry="38" fill="url(#brainGrad)" stroke="#2a9e8a" stroke-width="1"/>
+          <path d="M28 50 Q35 38 42 50 Q50 62 58 50 Q66 38 74 50 Q82 62 90 50" fill="none" stroke="#4dd8c0" stroke-width="1.2" stroke-opacity=".6"/>
+          <path d="M32 58 Q40 46 48 58 Q56 70 64 58 Q72 46 80 58" fill="none" stroke="#4dd8c0" stroke-width="1" stroke-opacity=".5"/>
+          <path d="M35 44 Q42 34 50 42 Q58 50 66 40 Q73 31 80 42" fill="none" stroke="#4dd8c0" stroke-width=".8" stroke-opacity=".4"/>
+          <path d="M40 65 Q50 56 60 64 Q70 72 80 64" fill="none" stroke="#4dd8c0" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="45" cy="48" r="2.5" fill="#4dd8c0" filter="url(#nodeGlow)" opacity=".9"/>
+          <circle cx="60" cy="42" r="2" fill="#e879b8" filter="url(#nodeGlow)" opacity=".8"/>
+          <circle cx="75" cy="50" r="2.5" fill="#4dd8c0" filter="url(#nodeGlow)" opacity=".9"/>
+          <circle cx="55" cy="60" r="2" fill="#4a90d9" filter="url(#nodeGlow)" opacity=".8"/>
+          <circle cx="68" cy="57" r="1.8" fill="#4dd8c0" opacity=".7"/>
+          <line x1="45" y1="48" x2="60" y2="42" stroke="#4dd8c0" stroke-width=".7" stroke-opacity=".4"/>
+          <line x1="60" y1="42" x2="75" y2="50" stroke="#4dd8c0" stroke-width=".7" stroke-opacity=".4"/>
+          <line x1="55" y1="60" x2="68" y2="57" stroke="#e879b8" stroke-width=".7" stroke-opacity=".4"/>
+          <ellipse cx="60" cy="82" rx="12" ry="6" fill="#1a3a3a" stroke="#2a9e8a" stroke-width="1"/>
+          <rect x="56" y="78" width="8" height="10" fill="#131a1a"/>
+        </svg>
+      </div>
+      <div class="sync-row">
+        <span class="sync-label">VISUAL CORTEX</span>
+        <span class="sync-val">92% SYNC</span>
+      </div>
+      <div class="sync-bar">
+        <div class="sync-fill" style="width: 92%"></div>
+      </div>
+    </div>
+
+    <div class="panel-block">
+      <div class="panel-header">
+        <span class="panel-title">CLUSTER INTEGRITY</span>
+      </div>
+      <div class="cluster-metric">
+        <div class="cm-row">
+          <span class="cm-label">Cognitive Load</span>
+          <span class="cm-val cyan">64<span class="cm-unit">%</span></span>
+        </div>
+        <div class="seg-bar">
+          <div class="seg active-cyan"></div><div class="seg active-cyan"></div>
+          <div class="seg active-cyan"></div><div class="seg active-cyan"></div>
+          <div class="seg"></div><div class="seg"></div>
+          <div class="seg"></div><div class="seg"></div>
+        </div>
+      </div>
+      <div class="cluster-metric">
+        <div class="cm-row">
+          <span class="cm-label">Entropy Level</span>
+          <span class="cm-val pink">0.002<span class="cm-unit">σ</span></span>
+        </div>
+        <div class="seg-bar">
+          <div class="seg active-pink"></div>
+          <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+          <div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+        </div>
+      </div>
+      <div class="warn-box">
+        <span class="warn-dot"></span>
+        <p class="warn-text">WARNING: SUB-SYSTEM 402 REPORTED MINOR TEMPORAL DRIFT. AUTO-CORRECTION IN PROGRESS.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- BOTTOM STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon pink">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2 8l4-4 4 4 4-4M2 12l4-4 4 4 4-4"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-name">LATENCY</span>
+        <span class="stat-val">12ms</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon blue">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <ellipse cx="8" cy="6" rx="5" ry="2.5"/>
+          <path d="M3 6v4c0 1.4 2.2 2.5 5 2.5S13 11.4 13 10V6"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-name">STORAGE</span>
+        <span class="stat-val">2.4 PB</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon cyan">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8" cy="6" r="2.5"/>
+          <path d="M3 13c0-2.8 2.2-5 5-5s5 2.2 5 5"/>
+          <circle cx="13" cy="5" r="1.5"/>
+          <path d="M13 8.5c1.5.5 2.5 1.8 2.5 3"/>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-name">ACTIVE SYNAPSE</span>
+        <span class="stat-val">14.8k</span>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -8,5 +8,6 @@ export interface Personality {
   borderColor: string;
   description: string;
   tagline: string;
+  price?: string;
 }
 

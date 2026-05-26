@@ -1,4 +1,4 @@
-<div class="min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+<!-- <div class="min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16 animate-fade-in-up">
           <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-6"
@@ -45,4 +45,218 @@
           }
         </div>
       </div>
+    </div> -->
+<div class="page neural-bg">
+  <header class="top-bar">
+    <div class="brand">
+      <div class="logo">🧠</div>
+      <div>
+        <h3>NEURO_CORE</h3>
+        <p>SYSTEM : ONLINE</p>
+      </div>
     </div>
+    <div class="status-dot"></div>
+  </header>
+  <section class="hero animate-fade-in-up">
+    <p class="hero-label">
+      Neural Enhancement Exchange
+    </p>
+    <h1 class="hero-title">
+      Elevate your
+      <span class="gradient-text">
+        Cognitive Architecture.
+      </span>
+    </h1>
+    <p class="hero-description">
+      Browse professional-grade neural plugins calibrated for the high-end
+      obsidian link.
+    </p>
+    <div class="search-box">
+      <span>⌕</span>
+      <input
+        type="text"
+        placeholder="Search Enhancements..."
+        class="search-input"
+      />
+    </div>
+    <div class="tags">
+      @for (tag of tags; track tag) {
+        <button class="chip">
+          {{ tag }}
+        </button>
+      }
+    </div>
+  </section>
+  <section class="featured-card animate-fade-in-up">
+    <div class="overlay"></div>
+    <div class="featured-content">
+      <span class="premium-badge">
+        PREMIUM GRADE
+      </span>
+      <h2>
+        Analytical
+        <br>
+        Overclock
+      </h2>
+      <p>
+        Triple your logical processing capacity during high-stakes
+        deliberation.
+      </p>
+      <div class="featured-footer">
+        <button class="acquire-btn">
+          ACQUIRE — 4,200 NC
+        </button>
+        <small>
+          Active Installation Required
+        </small>
+      </div>
+    </div>
+  </section>
+  <section class="cards">
+    @for (personality of personalities; track personality.id) {
+      <div class="mind-card">
+        <!-- @if(personality.image){
+
+          <div class="mind-image">
+
+            <img
+              [src]="personality.image"
+              [alt]="personality.name"
+            />
+
+          </div>
+
+        } -->
+        <div class="mind-content">
+          <div class="mind-top">
+
+            <div>
+
+              <h3>
+                {{ personality.name }}
+              </h3>
+
+              <p class="mind-description">
+                {{ personality.description }}
+              </p>
+
+            </div>
+
+            <span class="mind-price">
+              {{ personality.price }}
+            </span>
+
+          </div>
+
+          <div class="mind-bottom">
+
+            <div class="mind-meta">
+
+              <div
+                class="mini-icon"
+                [style.background]="personality.gradient"
+              >
+                {{ personality.icon }}
+              </div>
+
+              <span>
+                {{ personality.tagline }}
+              </span>
+
+            </div>
+
+            <button class="details-btn">
+              DETAILS
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+  <!-- SECONDARY -->
+  <section class="secondary-section">
+
+    <div class="secondary-header">
+
+      <h2>
+        Secondary
+        <br>
+        Augments
+      </h2>
+
+      <button>
+        VIEW ALL →
+      </button>
+
+    </div>
+
+    <div class="secondary-list">
+
+      @for(item of secondaryAugments; track item.name){
+
+        <div class="secondary-card">
+
+          <div class="secondary-left">
+
+            <div class="secondary-icon">
+              {{ item.icon }}
+            </div>
+
+            <div>
+
+              <h3>{{ item.name }}</h3>
+
+              <p>{{ item.description }}</p>
+
+            </div>
+
+          </div>
+
+          <div class="secondary-right">
+
+            <span>{{ item.price }}</span>
+
+            <span>→</span>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+
+    <button class="nav-item">
+      <span>⌂</span>
+      <p>Home</p>
+    </button>
+
+    <button class="nav-item active">
+      <span>🧠</span>
+      <p>Minds</p>
+    </button>
+
+    <button class="nav-item">
+      <span>⚔</span>
+      <p>Clash</p>
+    </button>
+
+    <button class="nav-item">
+      <span>⟳</span>
+      <p>History</p>
+    </button>
+
+  </nav>
+
+</div>

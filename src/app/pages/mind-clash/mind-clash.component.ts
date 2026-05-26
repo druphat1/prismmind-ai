@@ -24,6 +24,20 @@ export class MindClashComponent {
   clashQuestion = signal('');
   isLoading = signal(false);
   debate = signal<DebateEntry[]>([]);
+  
+  // Quick preview helper: populate demo debate entries
+  loadSampleClash(): void {
+    const p1 = this.personalities.find(p => p.id === this.selectedId1())!;
+    const p2 = this.personalities.find(p => p.id === this.selectedId2())!;
+    const sample: DebateEntry[] = [
+      { speaker: p1, text: 'I propose we prioritize robust systems and reproducible processes.', displayedText: 'I propose we prioritize robust systems and reproducible processes.', isTyping: false },
+      { speaker: p2, text: 'Principles and values should guide outcomes, not just efficiency.', displayedText: 'Principles and values should guide outcomes, not just efficiency.', isTyping: false },
+      { speaker: p1, text: 'Scalable architectures reduce long-term friction and accelerate progress.', displayedText: 'Scalable architectures reduce long-term friction and accelerate progress.', isTyping: false },
+      { speaker: p2, text: 'Yet without clarity on purpose, scale becomes directionless and risky.', displayedText: 'Yet without clarity on purpose, scale becomes directionless and risky.', isTyping: false }
+    ];
+    this.debate.set(sample);
+    this.isLoading.set(false);
+  }
    
   getDebateRound(index:number){
     return Math.floor(index/2)+1;

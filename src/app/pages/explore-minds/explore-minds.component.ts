@@ -20,4 +20,32 @@ export class ExploreMindsComponent {
    getSampleQuote(personality: Personality){
     return this.sampleQuotes[personality.id] ||'';
    }
+   tags = [
+    'All Augments',
+    'Memory',
+    'Logic',
+    'Creativity',
+    'Sensory'
+  ];
+
+  secondaryAugments = [
+    {
+      icon: '🌐',
+      name: 'Linguistic Bridge v4',
+      description: 'Language acquisition module',
+      price: '850 NC'
+    },
+    {
+      icon: '🧪',
+      name: 'Lucid Architect',
+      description: 'Enhanced dream recall & control',
+      price: '1,200 NC'
+    },
+    {
+      icon: '👁',
+      name: 'Visual Upscaler',
+      description: 'Digital optic overlay correction',
+      price: '2,150 NC'
+    }
+  ];
 }

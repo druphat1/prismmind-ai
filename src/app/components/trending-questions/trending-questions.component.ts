@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class TrendingQuestionsComponent {
   questions = TRENDING_QUESTIONS;
-  questionClicked = output<String>();
+  questionClicked = output<string>();
 }
